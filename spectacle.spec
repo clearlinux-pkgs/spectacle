@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 18.12.2
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.12.2/src/spectacle-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/spectacle-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/spectacle-18.12.2.tar.xz.sig
-Summary  : KDE screenshot capture utility
+Version  : 18.12.3
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
 Requires: spectacle-bin = %{version}-%{release}
@@ -20,6 +20,7 @@ Requires: spectacle-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
+BuildRequires : libkipi-dev
 
 %description
 Spectacle - The KDE Screenshot Utility
@@ -69,22 +70,23 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-18.12.2
+%setup -q -n spectacle-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549911902
+export SOURCE_DATE_EPOCH=1552014992
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549911902
+export SOURCE_DATE_EPOCH=1552014992
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
 cp COPYING %{buildroot}/usr/share/package-licenses/spectacle/COPYING
@@ -147,6 +149,8 @@ popd
 /usr/share/doc/HTML/pt/spectacle/index.docbook
 /usr/share/doc/HTML/pt_BR/spectacle/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/spectacle/index.docbook
+/usr/share/doc/HTML/ru/spectacle/index.cache.bz2
+/usr/share/doc/HTML/ru/spectacle/index.docbook
 /usr/share/doc/HTML/sv/spectacle/index.cache.bz2
 /usr/share/doc/HTML/sv/spectacle/index.docbook
 /usr/share/doc/HTML/uk/spectacle/ApplicationPreferences.png
