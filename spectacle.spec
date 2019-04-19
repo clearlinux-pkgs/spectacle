@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 18.12.3
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/spectacle-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 5
+URL      : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz.sig
 Summary  : KDE screenshot capture utility
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
@@ -70,14 +70,14 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-18.12.3
+%setup -q -n spectacle-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555344837
+export SOURCE_DATE_EPOCH=1555633104
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -85,7 +85,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555344837
+export SOURCE_DATE_EPOCH=1555633104
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
 cp COPYING %{buildroot}/usr/share/package-licenses/spectacle/COPYING
@@ -135,11 +135,6 @@ popd
 /usr/share/doc/HTML/en/spectacle/index.docbook
 /usr/share/doc/HTML/es/spectacle/index.cache.bz2
 /usr/share/doc/HTML/es/spectacle/index.docbook
-/usr/share/doc/HTML/id/spectacle/ApplicationPreferences.png
-/usr/share/doc/HTML/id/spectacle/MainWindow.png
-/usr/share/doc/HTML/id/spectacle/SaveOptions.png
-/usr/share/doc/HTML/id/spectacle/index.cache.bz2
-/usr/share/doc/HTML/id/spectacle/index.docbook
 /usr/share/doc/HTML/it/spectacle/index.cache.bz2
 /usr/share/doc/HTML/it/spectacle/index.docbook
 /usr/share/doc/HTML/nl/spectacle/index.cache.bz2
@@ -148,8 +143,6 @@ popd
 /usr/share/doc/HTML/pt/spectacle/index.docbook
 /usr/share/doc/HTML/pt_BR/spectacle/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/spectacle/index.docbook
-/usr/share/doc/HTML/ru/spectacle/index.cache.bz2
-/usr/share/doc/HTML/ru/spectacle/index.docbook
 /usr/share/doc/HTML/sv/spectacle/index.cache.bz2
 /usr/share/doc/HTML/sv/spectacle/index.docbook
 /usr/share/doc/HTML/uk/spectacle/ApplicationPreferences.png
