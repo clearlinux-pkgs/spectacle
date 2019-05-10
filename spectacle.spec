@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 19.04.0
-Release  : 6
-URL      : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/spectacle-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.1/src/spectacle-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/spectacle-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/spectacle-19.04.1.tar.xz.sig
 Summary  : KDE screenshot capture utility
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
@@ -70,14 +70,14 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-19.04.0
+%setup -q -n spectacle-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557048913
+export SOURCE_DATE_EPOCH=1557467116
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -92,7 +92,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557048913
+export SOURCE_DATE_EPOCH=1557467116
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
 cp COPYING %{buildroot}/usr/share/package-licenses/spectacle/COPYING
