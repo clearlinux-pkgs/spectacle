@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 19.04.3
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.3/src/spectacle-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/spectacle-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/spectacle-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.08.0/src/spectacle-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/spectacle-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/spectacle-19.08.0.tar.xz.sig
 Summary  : KDE screenshot capture utility
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
@@ -20,7 +20,9 @@ Requires: spectacle-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
+BuildRequires : kglobalaccel-dev
 BuildRequires : libkipi-dev
+BuildRequires : purpose-dev
 
 %description
 Spectacle - The KDE Screenshot Utility
@@ -70,16 +72,17 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-19.04.3
+%setup -q -n spectacle-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562895400
+export SOURCE_DATE_EPOCH=1565920445
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -93,7 +96,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562895400
+export SOURCE_DATE_EPOCH=1565920445
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
 cp COPYING %{buildroot}/usr/share/package-licenses/spectacle/COPYING
@@ -107,6 +110,7 @@ popd
 
 %files
 %defattr(-,root,root,-)
+/usr/lib64/kconf_update_bin/spectacle-migrate-shortcuts
 
 %files bin
 %defattr(-,root,root,-)
@@ -122,10 +126,11 @@ popd
 /usr/share/icons/hicolor/32x32/apps/spectacle.png
 /usr/share/icons/hicolor/48x48/apps/spectacle.png
 /usr/share/icons/hicolor/scalable/apps/spectacle.svgz
-/usr/share/khotkeys/spectacle.khotkeys
+/usr/share/kconf_update/spectacle_shortcuts.upd
+/usr/share/kglobalaccel/org.kde.spectacle.desktop
 /usr/share/knotifications5/spectacle.notifyrc
 /usr/share/metainfo/org.kde.spectacle.appdata.xml
-/usr/share/xdg/spectacle.categories
+/usr/share/qlogging-categories5/spectacle.categories
 
 %files doc
 %defattr(0644,root,root,0755)
