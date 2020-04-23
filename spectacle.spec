@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 19.12.3
-Release  : 17
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/spectacle-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/spectacle-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/spectacle-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 18
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz.sig
 Summary  : KDE screenshot capture utility
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
@@ -73,15 +73,15 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-19.12.3
-cd %{_builddir}/spectacle-19.12.3
+%setup -q -n spectacle-20.04.0
+cd %{_builddir}/spectacle-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583527885
+export SOURCE_DATE_EPOCH=1587674768
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -98,13 +98,13 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583527885
+export SOURCE_DATE_EPOCH=1587674768
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
-cp %{_builddir}/spectacle-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/spectacle-19.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
-cp %{_builddir}/spectacle-19.12.3/COPYING.LGPL-2 %{buildroot}/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/spectacle-19.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/spectacle-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/spectacle-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
+cp %{_builddir}/spectacle-20.04.0/COPYING.LGPL-2 %{buildroot}/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/spectacle-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
@@ -128,6 +128,7 @@ popd
 /usr/share/icons/hicolor/32x32/apps/spectacle.png
 /usr/share/icons/hicolor/48x48/apps/spectacle.png
 /usr/share/icons/hicolor/scalable/apps/spectacle.svgz
+/usr/share/kconf_update/spectacle_newConfig.upd
 /usr/share/kconf_update/spectacle_shortcuts.upd
 /usr/share/kglobalaccel/org.kde.spectacle.desktop
 /usr/share/knotifications5/spectacle.notifyrc
