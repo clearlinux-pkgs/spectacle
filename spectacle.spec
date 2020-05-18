@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : spectacle
-Version  : 20.04.0
-Release  : 18
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/spectacle-20.04.0.tar.xz.sig
-Summary  : KDE screenshot capture utility
+Version  : 20.04.1
+Release  : 19
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/spectacle-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/spectacle-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/spectacle-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
 Requires: spectacle-bin = %{version}-%{release}
@@ -20,10 +20,12 @@ Requires: spectacle-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kglobalaccel-dev
 BuildRequires : kwayland-dev
 BuildRequires : libkipi-dev
 BuildRequires : purpose-dev
+BuildRequires : qtx11extras-dev
 
 %description
 Spectacle - The KDE Screenshot Utility
@@ -73,38 +75,37 @@ locales components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-20.04.0
-cd %{_builddir}/spectacle-20.04.0
+%setup -q -n spectacle-20.04.1
+cd %{_builddir}/spectacle-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587674768
+export SOURCE_DATE_EPOCH=1589830204
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587674768
+export SOURCE_DATE_EPOCH=1589830204
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
-cp %{_builddir}/spectacle-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/spectacle-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
-cp %{_builddir}/spectacle-20.04.0/COPYING.LGPL-2 %{buildroot}/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/spectacle-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/spectacle-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/spectacle-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
+cp %{_builddir}/spectacle-20.04.1/COPYING.LGPL-2 %{buildroot}/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/spectacle-20.04.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
