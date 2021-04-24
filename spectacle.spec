@@ -5,18 +5,19 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : spectacle
-Version  : 20.12.3
-Release  : 27
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/spectacle-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/spectacle-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/spectacle-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 28
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/spectacle-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/spectacle-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/spectacle-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.3 GPL-2.0 LGPL-2.0 LGPL-2.1
+License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
 Requires: spectacle-bin = %{version}-%{release}
 Requires: spectacle-data = %{version}-%{release}
 Requires: spectacle-license = %{version}-%{release}
 Requires: spectacle-locales = %{version}-%{release}
+Requires: spectacle-man = %{version}-%{release}
 Requires: spectacle-services = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
@@ -56,6 +57,7 @@ data components for the spectacle package.
 %package doc
 Summary: doc components for the spectacle package.
 Group: Documentation
+Requires: spectacle-man = %{version}-%{release}
 
 %description doc
 doc components for the spectacle package.
@@ -77,6 +79,14 @@ Group: Default
 locales components for the spectacle package.
 
 
+%package man
+Summary: man components for the spectacle package.
+Group: Default
+
+%description man
+man components for the spectacle package.
+
+
 %package services
 Summary: services components for the spectacle package.
 Group: Systemd services
@@ -86,15 +96,15 @@ services components for the spectacle package.
 
 
 %prep
-%setup -q -n spectacle-20.12.3
-cd %{_builddir}/spectacle-20.12.3
+%setup -q -n spectacle-21.04.0
+cd %{_builddir}/spectacle-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618705466
+export SOURCE_DATE_EPOCH=1619244877
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -110,13 +120,15 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618705466
+export SOURCE_DATE_EPOCH=1619244877
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/spectacle
-cp %{_builddir}/spectacle-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/spectacle-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
-cp %{_builddir}/spectacle-20.12.3/COPYING.LGPL-2 %{buildroot}/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/spectacle-20.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/spectacle-21.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/spectacle/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+cp %{_builddir}/spectacle-21.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/spectacle/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/spectacle-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/spectacle/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/spectacle-21.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/spectacle/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/spectacle-21.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/spectacle/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/spectacle-21.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/spectacle/7d9831e05094ce723947d729c2a46a09d6e90275
 pushd clr-build
 %make_install
 popd
@@ -174,8 +186,6 @@ popd
 /usr/share/doc/HTML/pt/spectacle/index.docbook
 /usr/share/doc/HTML/pt_BR/spectacle/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/spectacle/index.docbook
-/usr/share/doc/HTML/ru/spectacle/index.cache.bz2
-/usr/share/doc/HTML/ru/spectacle/index.docbook
 /usr/share/doc/HTML/sv/spectacle/index.cache.bz2
 /usr/share/doc/HTML/sv/spectacle/index.docbook
 /usr/share/doc/HTML/uk/spectacle/ApplicationPreferences.png
@@ -186,10 +196,21 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/spectacle/01a6b4bf79aca9b556822601186afab86e8c4fbf
-/usr/share/package-licenses/spectacle/464c48ede3b2a4ea76b5f314f03213315f942c63
-/usr/share/package-licenses/spectacle/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/spectacle/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+/usr/share/package-licenses/spectacle/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/spectacle/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/spectacle/a4c60b3fefda228cd7439d3565df043192fef137
+/usr/share/package-licenses/spectacle/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/ca/man1/spectacle.1
+/usr/share/man/de/man1/spectacle.1
+/usr/share/man/es/man1/spectacle.1
+/usr/share/man/it/man1/spectacle.1
+/usr/share/man/man1/spectacle.1
+/usr/share/man/nl/man1/spectacle.1
+/usr/share/man/sv/man1/spectacle.1
+/usr/share/man/uk/man1/spectacle.1
 
 %files services
 %defattr(-,root,root,-)
