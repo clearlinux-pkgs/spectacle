@@ -1,5 +1,5 @@
 PKG_NAME := spectacle
-URL = https://download.kde.org/stable/release-service/22.12.3/src/spectacle-22.12.3.tar.xz
+URL = https://download.kde.org/stable/release-service/23.04.1/src/spectacle-23.04.1.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
