@@ -11,6 +11,8 @@ libKF6KIOCore.so.6
 libKF6KIOGui.so.6
 libKF6KIOWidgets.so.6
 libKF6Notifications.so.6
+libKF6Purpose.so.6
+libKF6PurposeWidgets.so.6
 libKF6Service.so.6
 libKF6WidgetsAddons.so.6
 libKF6WindowSystem.so.6
